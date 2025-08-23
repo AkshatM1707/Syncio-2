@@ -4,10 +4,9 @@ import * as SignIn from '@clerk/elements/sign-in'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import React from 'react'
-import { FaGithub, FaGoogle, FaFacebook } from "react-icons/fa";
+import { FaGithub, FaGoogle,  } from "react-icons/fa";
 import Image from 'next/image'
-import logo from "../../public/Writepad_logo.png"
-import dark_logo from "../../public/Writepad_dark_logo.png"
+
 import { useTheme } from 'next-themes'
 import {
     Card,
@@ -24,8 +23,6 @@ import { RiLoader5Line } from "react-icons/ri";
 const SignInPage = ({ onToggle }: { onToggle: () => void }) => {
 
 
-    const { theme } = useTheme();
-    const mainlogo = theme === 'light' ? logo : dark_logo;
 
     return (
         <div className="grid w-full  items-center px-4 sm:justify-center border-none shadow-none h-inherit">
@@ -37,7 +34,7 @@ const SignInPage = ({ onToggle }: { onToggle: () => void }) => {
                             <SignIn.Step name="start">
                                 <Card className="w-full sm:w-96  border-none shadow-none max-h-inherit max-lg:px-0">
                                     <CardHeader>
-                                        <CardTitle className=' flex items-center justify-center text-nowrap max-sm:text-lg'>Sign in to WritePad <Image src={mainlogo} alt='mainlogo' width={60} height={60} className='hidden max-sm:block' /></CardTitle>
+                                        <CardTitle className=' flex items-center justify-center text-nowrap max-sm:text-lg'>Sign in to Syncio </CardTitle>
                                         <CardDescription className='flex items-center justify-center text-nowrap max-sm:text-xs'>Welcome back! Please sign in to continue</CardDescription>
                                     </CardHeader>
                                     <CardContent className="grid gap-y-4 max-sm:gap-y-1">
@@ -64,7 +61,7 @@ const SignInPage = ({ onToggle }: { onToggle: () => void }) => {
                                                     </Clerk.Loading>
                                                 </Button>
                                             </Clerk.Connection>
-                                            <Clerk.Connection name="facebook" asChild>
+                                            <Clerk.Connection name="github" asChild>
                                                 <Button
                                                     size="sm"
                                                     variant="outline"
@@ -72,14 +69,14 @@ const SignInPage = ({ onToggle }: { onToggle: () => void }) => {
                                                     className='max-sm:text-xs max-sm:px-2 max-sm:py-1'
                                                     disabled={isGlobalLoading}
                                                 >
-                                                    <Clerk.Loading scope="provider:facebook">
+                                                    <Clerk.Loading scope="provider:github">
                                                         {(isLoading) =>
                                                             isLoading ? (
                                                                 <RiLoader5Line className="size-4 animate-spin" />
                                                             ) : (
                                                                 <>
-                                                                    <FaFacebook className="mr-2 size-4" />
-                                                                    Facebook
+                                                                    <FaGithub className="mr-2 size-4" />
+                                                                    Github
                                                                 </>
                                                             )
                                                         }
@@ -93,7 +90,7 @@ const SignInPage = ({ onToggle }: { onToggle: () => void }) => {
                                         </p>
                                         <Clerk.Field name="identifier" className="space-y-2 max-sm:space-y-1">
                                             <Clerk.Label asChild>
-                                                <Label>Email address or Username</Label>
+                                                <Label>Email address</Label>
                                             </Clerk.Label>
                                             <Clerk.Input type="text" required asChild>
                                                 <Input />

@@ -8,8 +8,6 @@ import { useAuth, useSignIn } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { RiLoader5Line } from "react-icons/ri";
 import Image from "next/image";
-import logo from "../../public/Writepad_logo.png";
-import dark_logo from "../../public/Writepad_dark_logo.png";
 import { useTheme } from "next-themes";
 import {toast} from 'react-toastify';
 import {
@@ -51,7 +49,6 @@ const resetSchema = z.object({
 
 export default function ProfileForm({ onToggle }: { onToggle: () => void }) {
     const { theme } = useTheme();
-    const mainlogo = theme === "light" ? logo : dark_logo;
 
     const router = useRouter();
     const { isSignedIn } = useAuth();
@@ -148,13 +145,7 @@ export default function ProfileForm({ onToggle }: { onToggle: () => void }) {
                 <CardHeader>
                     <CardTitle className="flex items-center justify-center text-nowrap max-sm:text-lg">
                         Forgot Password{" "}
-                        <Image
-                            src={mainlogo}
-                            alt="mainlogo"
-                            width={60}
-                            height={60}
-                            className="hidden max-sm:block"
-                        />
+                       
                     </CardTitle>
                     <CardDescription className="flex items-center justify-center text-nowrap max-sm:text-xs">
                         Reset your password by entering your email below

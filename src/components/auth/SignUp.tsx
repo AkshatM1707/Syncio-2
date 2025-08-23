@@ -5,11 +5,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { RiLoader5Line } from "react-icons/ri";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
-import Image from 'next/image'
-import logo from "../../public/Writepad_logo.png"
 import React from 'react'
-import dark_logo from "../../public/Writepad_dark_logo.png"
-import { useTheme } from 'next-themes'
 import {
     Card,
     CardContent,
@@ -24,8 +20,6 @@ import { cn } from '@/lib/utils'
 
 export default function SignUpPage() {
 
-    const { theme } = useTheme();
-    const mainlogo = theme === 'light' ? logo : dark_logo;
     return (
         <div className="grid w-full  items-center px-4 sm:justify-center border-none shadow-none max-h-[90%]">
             <SignUp.Root>
@@ -35,7 +29,7 @@ export default function SignUpPage() {
                             <SignUp.Step name="start">
                                 <Card className="w-full sm:w-96  border-none shadow-none max-h-inherit max-lg:px-0">
                                     <CardHeader>
-                                        <CardTitle className=' flex items-center justify-center text-nowrap max-sm:text-lg'>Start With WritePad <Image src={mainlogo} alt='mainlogo' width={60} height={60} className='hidden max-sm:block' /></CardTitle>
+                                        <CardTitle className=' flex items-center justify-center text-nowrap max-sm:text-lg'>Start With Syncio </CardTitle>
                                         <CardDescription className='flex items-center justify-center text-nowrap max-sm:text-xs'>
                                             Welcome! Please fill in the details to get started.
                                         </CardDescription>
@@ -64,7 +58,7 @@ export default function SignUpPage() {
                                                     </Clerk.Loading>
                                                 </Button>
                                             </Clerk.Connection>
-                                            <Clerk.Connection name="facebook" asChild>
+                                            <Clerk.Connection name="github" asChild>
                                                 <Button
                                                     size="sm"
                                                     variant="outline"
@@ -79,8 +73,8 @@ export default function SignUpPage() {
                                                                 <RiLoader5Line className="size-4 animate-spin" />
                                                             ) : (
                                                                 <>
-                                                                    <FaFacebook className="mr-2 size-4" />
-                                                                    Facebook
+                                                                    <FaGithub className="mr-2 size-4" />
+                                                                    Github
                                                                 </>
                                                             )
                                                         }
@@ -150,7 +144,7 @@ export default function SignUpPage() {
                                 <SignUp.Strategy name="email_code">
                                     <Card className="w-full sm:w-96 shadow-none border-none max-lg:p-0">
                                         <CardHeader>
-                                            <CardTitle className=' flex items-center justify-center gap-3 max-sm:text-lg text-nowrap'>Verify Your Email <Image src={mainlogo} alt='mainlogo' width={60} height={60} className='hidden max-sm:block' /></CardTitle>
+                                            <CardTitle className=' flex items-center justify-center gap-3 max-sm:text-lg text-nowrap'>Verify Your Email </CardTitle>
                                             <CardDescription className='flex items-center justify-center text-nowrap max-sm:text-xs'>
                                                 Use the verification link sent to your email address
                                             </CardDescription>
