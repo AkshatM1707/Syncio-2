@@ -1,9 +1,10 @@
 "use client";
 
 import { Authenticated, Unauthenticated } from "convex/react";
-import { UserButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useStoreUserEffect } from "../storeUserEffect";
+import { UserButton } from "../features/auth/components/user-button";
 
 export default function Home() {
   const router = useRouter();
@@ -11,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Authenticated>
-        <UserButton />
+        
         <Content />
       </Authenticated>
 
@@ -23,11 +24,13 @@ export default function Home() {
 }
 
 function Content() {
-  return <div>Authenticated content</div>;
+  return <div>
+    <UserButton />
+  </div>;
 }
 
 function RedirectToAuth({ router }: { router: ReturnType<typeof useRouter> }) {
-  console.log('djkfhbskjdfbgkdsjbgsdkj');
+  
   useEffect(() => {
     router.replace("/auth"); 
   }, [router]);
