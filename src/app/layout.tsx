@@ -4,6 +4,8 @@ import "./globals.css";
 import { ConvexClientProvider } from "../providers/ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ToastContainer } from "react-toastify";
+import { Modals } from "@/components/modals";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -44,6 +46,7 @@ export default function RootLayout({
               pauseOnHover
               theme="dark"
             />
+            <Modals/>
           </ConvexClientProvider>
         </body>
       </html>
