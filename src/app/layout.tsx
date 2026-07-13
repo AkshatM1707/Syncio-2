@@ -3,8 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ConvexClientProvider } from "../providers/ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ToastContainer } from "react-toastify";
 import { Modals } from "@/components/modals";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,18 +34,7 @@ export default function RootLayout({
         >
           <ConvexClientProvider>
             {children}
-            <ToastContainer
-              position="bottom-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick={false}
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="dark"
-            />
+            <Toaster />
             <Modals/>
           </ConvexClientProvider>
         </body>

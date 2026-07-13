@@ -11,17 +11,37 @@ import {
 import { useCreateWorkspaceModal } from "../store/use-create-workspace-modal";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
+import { useCreateWorkspace } from "../api/use-create-workspace";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 interface CreateWorkspaceModalState {
   open: boolean;
   setOpen: (newOpen: boolean) => void;
 }
 
 export const CreateWorkspaceModal = () =>{
+  const router = useRouter(); 
   const [open,setOpen] = useCreateWorkspaceModal() ;
+  const [name,setName]= useState("");
+  const {mutate , isPending} = useCreateWorkspace() ;
+ 
   const handleClose =() => {
     setOpen(false) ;
-    //TODO: clear Form
+    setName("") ;
+  }
+
+  const handleSubmit =async(e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    mutate({name},{
+      onSuccess(id) {
+        toast.success("Workspace Created");
+        router.push(`/workspace/${id}`);
+        handleClose();
+
+      },
+
+    })  
   }
 
   return (
@@ -34,10 +54,11 @@ export const CreateWorkspaceModal = () =>{
                     Create a new workspace to collaborate with your team.
                 </DialogDescription>
             </DialogHeader>
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
              <Input 
-             value=""
-             disabled= {false}
+             value={name}
+             onChange= {(e)=>setName(e.target.value)}
+             disabled= {isPending}
              required
              autoFocus
              minLength={3}
@@ -45,7 +66,7 @@ export const CreateWorkspaceModal = () =>{
              
              />
              <div className="flex justify-end">
-                <Button disabled= {false}>
+                <Button disabled= {isPending}>
                     Create
                     
                 </Button>

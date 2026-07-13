@@ -1,11 +1,7 @@
 import { useParams } from "next/navigation";
 
-import { Id } from "../../../../convex/_generated/dataModel";
+import { Id } from "../../convex/_generated/dataModel";
 
-
-interface useGetWorkspaceProps{
-    
-}
 export const useWorkspaceId = () => {
   const params = useParams();
 
